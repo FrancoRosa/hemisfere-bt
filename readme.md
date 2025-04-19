@@ -28,6 +28,12 @@ The following tables list the commands accepted by the Atlas-band receiver to co
 
 ### Commands used:
 
-| Command               | Description                                                                                      |
-|-----------------------|--------------------------------------------------------------------------------|
-| `$JI`                 | Requests the serial number and firmware version number                         |
+These are the settings done once the communication was stablished
+picocom /dev/rf
+```
+$JBIN,3,1 #Activates Bin3 at 1Hz
+```
+### Add user to dialout
+```bash
+sudo usermod -aG dialout $USER
+```

@@ -8,5 +8,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@serialport/bindings": "^10.0.1",
+    "@serialport/stream": "^12.0.0",
+    "serialport": "^12.0.0"
+  }
 }
