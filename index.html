@@ -27,7 +27,7 @@
 
         const dataDiv = document.getElementById('data');
 
-        socket.on('serial-data', (data) => {
+        socket.on('data', (data) => {
             const timestamp = new Date().toLocaleString();
             const message = `[${timestamp}] ${data}\n`;
             dataDiv.textContent = message; // Append the data with timestamp

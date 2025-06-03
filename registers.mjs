@@ -63,7 +63,8 @@ export const binMsg = {
         offset: 8,
         fields: {
 
-            gpsTofWeek: {
+            // gpsTofWeek: {
+            time: {
                 pos: 0,
                 type: "DoubleLE",
                 round: 0
@@ -90,12 +91,12 @@ export const binMsg = {
             },
 
 
-            latitude: {
+            lat: {
                 pos: 16,
                 type: "DoubleLE",
                 round: 8
             },
-            longitude: {
+            lng: {
                 pos: 24,
                 type: "DoubleLE",
                 round: 8
