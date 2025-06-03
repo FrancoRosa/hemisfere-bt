@@ -29,7 +29,7 @@
 
         socket.on('data', (data) => {
             const timestamp = new Date().toLocaleString();
-            const message = `[${timestamp}] ${data}\n`;
+            const message = `[${timestamp}] ${JSON.stringify(data, null,2)}\n`;
             dataDiv.textContent = message; // Append the data with timestamp
         });
     </script>

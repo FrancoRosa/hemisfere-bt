@@ -45,7 +45,7 @@ async function findAndConnectPort() {
                     const parsed = parserBin(data); // Process the data
 
                     // Emit the data to WebSocket clients
-                    io.emit('data', JSON.stringify(parsed, null, 2));
+                    io.emit('data', parsed);
                 }
             });
 

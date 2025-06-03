@@ -112,21 +112,30 @@ export const binMsg = {
                 round: 2
             },
             heading: {
-                pos: 40,
-                type: "FloatLE",
-                round: 2
-            },
-            pitch: {
-                pos: 44,
-                type: "FloatLE",
-                round: 2
-            },
-            roll: {
                 pos: 48,
                 type: "FloatLE",
                 round: 2
             },
-
+            pitch: {
+                pos: 52,
+                type: "FloatLE",
+                round: 2
+            },
+            roll: {
+                pos: 56,
+                type: "FloatLE",
+                round: 2
+            },
+            hAcc: {
+                pos: 72,
+                type: "FloatLE",
+                round: 2
+            },
+            vAcc: {
+                pos: 76,
+                type: "FloatLE",
+                round: 2
+            },
 
 
         }
