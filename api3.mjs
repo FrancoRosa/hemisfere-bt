@@ -40,7 +40,7 @@ async function findAndConnectPort() {
 
             parser.on('data', (data) => {
                 if (data.includes('$BIN')) {
-                    console.log(`$BIN detected on port ${portInfo.path}`);
+                    // console.log(`$BIN detected on port ${portInfo.path}`);
                     activePort = port; // Set the active port
                     const parsed = parserBin(data); // Process the data
 
