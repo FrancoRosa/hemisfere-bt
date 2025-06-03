@@ -137,7 +137,6 @@ export const binMsg = {
                 round: 2
             },
 
-
         }
     }
 }
