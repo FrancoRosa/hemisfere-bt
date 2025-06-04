@@ -3,6 +3,13 @@ import { ReadlineParser } from '@serialport/parser-readline';
 import { parserBin } from './helper.mjs';
 import { Server } from 'socket.io';
 
+import { io as Client } from 'socket.io-client';
+import fs from 'fs';
+
+// Load settings from settings.json
+const settings = JSON.parse(fs.readFileSync('./settings.json', 'utf-8'));
+const websocketServer = settings.ntrip;
+
 const baudRate = 19200;
 let activePort = null;
 
@@ -24,7 +31,8 @@ io.on('connection', (socket) => {
 
 async function findAndConnectPort() {
     try {
-        const ports = await SerialPort.list();
+        let ports = await SerialPort.list();
+        ports = ports.filter(p => p.path.includes("USB"))
         for (const portInfo of ports) {
             const port = new SerialPort({
                 path: portInfo.path,
@@ -47,7 +55,7 @@ async function findAndConnectPort() {
                         io.emit('data', { ...parsed, hAcc: parsed.hAcc * 1000, vAcc: parsed.vAcc * 1000 });
 
                     } catch (error) {
-                        console.error("Error parsing data")
+                        console.error("... error parsing hgnss data")
                     }
                 }
             });
@@ -85,3 +93,23 @@ setInterval(() => {
         findAndConnectPort();
     }
 }, 5000); // Adjust the interval as needed
+
+// Connect to the WebSocket server as a client
+const socket = Client(websocketServer);
+let ntrip_count = 0;
+
+socket.on('connect', () => {
+    console.log(`Connected to WebSocket server at ${websocketServer}`);
+
+});
+
+socket.on("rtcm", (data) => {
+    if (data) {
+        if (activePort) {
+            activePort.write(data);
+            if (ntrip_count === 0) console.log("... web ntrip sent:", data.length);
+            ntrip_count++;
+            if (ntrip_count > 15) ntrip_count = 0;
+        }
+    }
+});

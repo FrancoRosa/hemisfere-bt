@@ -10,15 +10,11 @@ export const parserBin = (hex) => {
             return parseBin1(buffer)
         }
         if (block == 3) {
-            console.log("... bin3")
+            // console.log("... bin3")
             return parseBin3(buffer)
-
-
         }
-
         else {
             console.log("... unknown stream")
-
         }
 
     } else {
