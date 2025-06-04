@@ -12,6 +12,7 @@ const websocketServer = settings.ntrip;
 
 const baudRate = 19200;
 let activePort = null;
+let lastActive = null;
 
 // Create a WebSocket server on port 10000
 const io = new Server(10000, {
@@ -20,12 +21,12 @@ const io = new Server(10000, {
         methods: ["GET", "POST"], // Allow GET and POST methods
     },
 });
-console.log('WebSocket server running on port 10000');
+console.log('... WebSocket running on port 10000');
 
 io.on('connection', (socket) => {
-    console.log('Client connected');
+    console.log('... web client connected');
     socket.on('disconnect', () => {
-        console.log('Client disconnected');
+        console.log('... web client disconnected');
     });
 });
 
@@ -43,13 +44,17 @@ async function findAndConnectPort() {
             const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n', encoding: "binary" }));
 
             port.on('open', () => {
-                console.log(`Serial port opened at ${portInfo.path} with ${baudRate} baud`);
+                console.log(`... opening ${portInfo.path} at ${baudRate}`);
             });
 
             parser.on('data', (data) => {
                 if (data.includes('$BIN')) {
                     // console.log(`$BIN detected on port ${portInfo.path}`);
                     activePort = port; // Set the active port
+                    if (activePort !== lastActive) {
+                        console.log("... activePort:", activePort.path)
+                    }
+                    lastActive = activePort
                     try {
                         const parsed = parserBin(data); // Process the data
                         io.emit('data', { ...parsed, hAcc: parsed.hAcc * 1000, vAcc: parsed.vAcc * 1000 });
@@ -77,19 +82,19 @@ async function findAndConnectPort() {
             // Attempt to open the port
             port.open((err) => {
                 if (err) {
-                    console.error(`Failed to open port ${portInfo.path}:`, err.message);
+                    console.error(`... ${portInfo.path}:`, err.message);
                 }
             });
         }
     } catch (err) {
-        console.error('Error listing ports:', err.message);
+        console.error('... error listing ports:', err.message);
     }
 }
 
 // Periodically scan for ports and reconnect if necessary
 setInterval(() => {
     if (!activePort) {
-        console.log('Scanning for ports...');
+        console.log('... scanning ports');
         findAndConnectPort();
     }
 }, 5000); // Adjust the interval as needed
@@ -99,7 +104,7 @@ const socket = Client(websocketServer);
 let ntrip_count = 0;
 
 socket.on('connect', () => {
-    console.log(`Connected to WebSocket server at ${websocketServer}`);
+    console.log(`... web ntrip at ${websocketServer}`);
 
 });
 
