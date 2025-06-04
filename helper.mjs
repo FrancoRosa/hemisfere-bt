@@ -38,7 +38,6 @@ export const parseBin1 = (buffer) => {
 };
 
 export const parseBin3 = (buffer) => {
-
     const fields = binMsg.bin3.fields
     const payload = {}
     Object.keys(fields).forEach(f => {
@@ -46,7 +45,6 @@ export const parseBin3 = (buffer) => {
         payload[f] = decodeField(buffer, "bin3", f)
     });
     return payload
-
 };
 
 

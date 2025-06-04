@@ -42,10 +42,15 @@ async function findAndConnectPort() {
                 if (data.includes('$BIN')) {
                     // console.log(`$BIN detected on port ${portInfo.path}`);
                     activePort = port; // Set the active port
-                    const parsed = parserBin(data); // Process the data
+                    try {
+                        const parsed = parserBin(data); // Process the data
+                        io.emit('data', { ...parsed, hAcc: parsed.hAcc * 1000, vAcc: parsed.vAcc * 1000 });
+
+                    } catch (error) {
+                        console.error("Error parsing data")
+                    }
 
                     // Emit the data to WebSocket clients
-                    io.emit('data', { ...parsed, hAcc: parsed.hAcc * 1000, vAcc: parsed.vAcc * 1000 });
                 }
             });
 
