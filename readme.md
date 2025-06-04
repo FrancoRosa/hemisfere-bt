@@ -34,6 +34,27 @@ These are the settings done once the communication was stablished
 $JBIN,3,1 #Activates Bin3 at 1Hz
 $JBIN,3,5 #Activates Bin3 at 5Hz
 $JBIN,3,10 #Activates Bin3 at 10Hz
+
+Other commands
+
+$JSHOW
+$JBIN,3,0
+$JBIN,3,1
+$JASC,RTCM3,0
+$JDIFF
+$JDIFF,PORTA
+$JDIFFX,INCLUDE,RTCM3
+
+$JDIFFX,INCLUDE
+$>JDIFFX,INCLUDE,SBAS,ARTK,ATLAS,RTCM2,EDIF,DFX,CMR,RTCM3,ROX,RTCM_23,BEIDOU,ALTPPP,QZSCLAS
+
+$JDIFFX,RTCM3
+$JDIFFX,TYPE
+$JDIFFX,RTCM3
+
+$JRTK,1 
+$JDIFFX,EXCLUDE,SBAS,ARTK,ATLAS,RTCM2,EDIF,DFX,CMR,ROX,RTCM_23,BEIDOU,ALTPPP,QZSCLAS
+
 ```
 ### Add user to dialout
 ```bash
