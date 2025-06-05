@@ -142,6 +142,25 @@ export const binMsg = {
 }
 
 
+export const navModes = [
+    "No fix",
+    "Fix 2d no diff",
+    "Fix 3d no diff",
+    "Fix 2D with diff",
+    "Fix 3D with diff",
+    "RTK float",
+    "RTK integer fixed",
+    "RTK float (SureFix enabled)",
+    "RTK integer fixed ",
+    "RTK SureFixed",
+    "aRTK integer fixed",
+    "aRTK float",
+    "aRTK Atlas converged",
+    "aRTK Atlas un-converged",
+    "Atlas converged",
+    "Atlas un-converged",
+]
+
 export const decodeField = (buffer, container, field) => {
     const params = binMsg[container].fields[field]
     const offset = binMsg[container].offset + params.pos

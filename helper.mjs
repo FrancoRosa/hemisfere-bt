@@ -1,4 +1,4 @@
-import { binMsg, decodeField } from "./registers.mjs";
+import { binMsg, decodeField, navModes } from "./registers.mjs";
 
 export const parserBin = (hex) => {
     // Convert hex string to buffer
@@ -40,7 +40,8 @@ export const parseBin3 = (buffer) => {
         // console.log(f, decodeField(buffer, "bin3", f))
         payload[f] = decodeField(buffer, "bin3", f)
     });
-    return payload
+
+    return { ...payload, navMode: navModes[payload.navMode] }
 };
 
 
