@@ -46,7 +46,7 @@ io.on('connection', (socket) => {
     });
 });
 
-const targets = ["USB", "rfconn"]
+const targets = ["USB", "rfcomm"]
 
 const isTarget = (path) => {
     return targets.some(target => path.includes(target));
