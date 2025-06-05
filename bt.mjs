@@ -2,11 +2,9 @@ import { SerialPort } from 'serialport';
 import { ReadlineParser } from '@serialport/parser-readline';
 import { parserBin } from './helper.mjs';
 import { Server } from 'socket.io';
-
 import { io as Client } from 'socket.io-client';
 import fs from 'fs';
 import { exec } from 'child_process';
-import { sourceMapsEnabled } from 'process';
 
 
 
