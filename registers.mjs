@@ -125,14 +125,14 @@ export const binMsg = {
                 type: "FloatLE",
                 round: 2
             },
-            
+
             Vacc: {
-                pos: 74,
+                pos: 72,
                 type: "FloatLE",
                 round: 2
             },
             Hacc: {
-                pos: 78,
+                pos: 76,
                 type: "FloatLE",
                 round: 2
             },
@@ -145,21 +145,21 @@ export const binMsg = {
 
 export const navModes = {
     0: "No fix",
-1: "Fix 2d no diff",
-2: "Fix 3d no diff",
-3: "Fix 2D with diff",
-4: "Fix 3D with diff",
-5: "RTK float",
-6: "RTK integer fixed",
-7: "RTK float (SureFix enabled)",
-8: "RTK integer fixed (SureFix enabled)",
-9: "RTK SureFixed",
-10: "aRTK integer fixed",
-11: "aRTK float",
-12: "aRTK Atlas converged",
-13: "aRTK Atlas un-converged",
-14: "Atlas converged",
-15: "Atlas un-converged",
+    1: "Fix 2d no diff",
+    2: "Fix 3d no diff",
+    3: "Fix 2D with diff",
+    4: "Fix 3D with diff",
+    5: "RTK float",
+    6: "RTK integer fixed",
+    7: "RTK float (SureFix enabled)",
+    8: "RTK integer fixed (SureFix enabled)",
+    9: "RTK SureFixed",
+    10: "aRTK integer fixed",
+    11: "aRTK float",
+    12: "aRTK Atlas converged",
+    13: "aRTK Atlas un-converged",
+    14: "Atlas converged",
+    15: "Atlas un-converged",
 }
 
 export const decodeField = (buffer, container, field) => {
