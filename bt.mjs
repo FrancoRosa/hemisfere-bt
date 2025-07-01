@@ -86,7 +86,7 @@ async function findAndConnectPort() {
                     lastActive = activePort
                     try {
                         const parsed = parserBin(data); // Process the data
-                        io.emit('data', { ...parsed, vAcc: parsed.vAcc * 1000, heading: rotate(parsed.heading) });
+                        io.emit('data', { ...parsed, hAcc: parsed.hAcc * 1000, vAcc: parsed.hAcc * 1000, heading: rotate(parsed.heading) });
 
                     } catch (error) {
                         console.error("... error parsing hgnss data")
