@@ -126,16 +126,16 @@ export const binMsg = {
                 type: "FloatLE",
                 round: 2
             },
-            hAcc: {
+            vAcc: {
                 pos: 72,
                 type: "FloatLE",
                 round: 2
             },
-            vAcc: {
-                pos: 76,
-                type: "FloatLE",
-                round: 2
-            },
+            // vAcc: {
+            //     pos: 76,
+            //     type: "FloatLE",
+            //     round: 2
+            // },
 
         }
     }

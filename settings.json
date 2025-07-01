@@ -1,4 +1,4 @@
 {
-  "ntrip": "ws://rtkflow.xyz:7300",
+  "ntrip": "ws://rtkflow.xyz:6100",
   "btmac":"A4:9E:69:50:70:52"
 }

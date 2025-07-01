@@ -64,6 +64,13 @@ async function findAndConnectPort() {
             });
 
             const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n', encoding: "binary" }));
+            const rotate = (a) => {
+                let result = a - 90
+                if (result < 0) {
+                    return result + 360
+                }
+                return result
+            }
 
             port.on('open', () => {
                 console.log(`... opening ${portInfo.path} at ${baudRate}`);
@@ -79,10 +86,11 @@ async function findAndConnectPort() {
                     lastActive = activePort
                     try {
                         const parsed = parserBin(data); // Process the data
-                        io.emit('data', { ...parsed, hAcc: parsed.hAcc * 1000, vAcc: parsed.vAcc * 1000 });
+                        io.emit('data', { ...parsed, vAcc: parsed.vAcc * 1000, heading: rotate(parsed.heading) });
 
                     } catch (error) {
                         console.error("... error parsing hgnss data")
+                        console.log(error)
                     }
                 }
             });
