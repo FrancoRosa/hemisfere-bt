@@ -37,8 +37,14 @@ export const parseBin3 = (buffer) => {
     const fields = binMsg.bin3.fields
     const payload = {}
     Object.keys(fields).forEach(f => {
-        // console.log(f, decodeField(buffer, "bin3", f))
-        payload[f] = decodeField(buffer, "bin3", f)
+        if (f == "navMode") {
+            console.log(f, navModes[decodeField(buffer, "bin3", f)])
+
+        } else {
+
+            console.log(f, decodeField(buffer, "bin3", f))
+        }
+
     });
 
     return { ...payload, navMode: navModes[payload.navMode] }
