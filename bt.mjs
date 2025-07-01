@@ -13,7 +13,8 @@ import { exec } from 'child_process';
 const settings = JSON.parse(fs.readFileSync('./settings.json', 'utf-8'));
 const { ntrip, btmac } = settings;
 
-const baudRate = 19200;
+// const baudRate = 19200;
+const baudRate = 115200;
 let activePort = null;
 let lastActive = null;
 
