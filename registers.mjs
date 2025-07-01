@@ -63,7 +63,8 @@ export const binMsg = {
         offset: 8,
         fields: {
 
-            gpsTofWeek: {
+            // gpsTofWeek: {
+            time: {
                 pos: 0,
                 type: "DoubleLE",
                 round: 0
@@ -90,12 +91,12 @@ export const binMsg = {
             },
 
 
-            latitude: {
+            lat: {
                 pos: 16,
                 type: "DoubleLE",
                 round: 8
             },
-            longitude: {
+            lng: {
                 pos: 24,
                 type: "DoubleLE",
                 round: 8
@@ -136,31 +137,50 @@ export const binMsg = {
                 type: "FloatLE",
                 round: 2
             },
-
-
+            pitch: {
+                pos: 52,
+                type: "FloatLE",
+                round: 2
+            },
+            roll: {
+                pos: 56,
+                type: "FloatLE",
+                round: 2
+            },
+            hAcc: {
+                pos: 72,
+                type: "FloatLE",
+                round: 2
+            },
+            vAcc: {
+                pos: 76,
+                type: "FloatLE",
+                round: 2
+            },
 
         }
     }
 }
 
-export const navModes = {
-    0: "No fix",
-    1: "Fix 2d no diff",
-    2: "Fix 3d no diff",
-    3: "Fix 2D with diff",
-    4: "Fix 3D with diff",
-    5: "RTK float",
-    6: "RTK integer fixed",
-    7: "RTK float (SureFix enabled)",
-    8: "RTK integer fixed (SureFix enabled)",
-    9: "RTK SureFixed",
-    10: "aRTK integer fixed",
-    11: "aRTK float",
-    12: "aRTK Atlas converged",
-    13: "aRTK Atlas un-converged",
-    14: "Atlas converged",
-    15: "Atlas un-converged",
-}
+
+export const navModes = [
+    "No fix",
+    "Fix 2d no diff",
+    "Fix 3d no diff",
+    "Fix 2D with diff",
+    "Fix 3D with diff",
+    "RTK float",
+    "RTK integer fixed",
+    "RTK float (SureFix enabled)",
+    "RTK integer fixed ",
+    "RTK SureFixed",
+    "aRTK integer fixed",
+    "aRTK float",
+    "aRTK Atlas converged",
+    "aRTK Atlas un-converged",
+    "Atlas converged",
+    "Atlas un-converged",
+]
 
 export const decodeField = (buffer, container, field) => {
     const params = binMsg[container].fields[field]

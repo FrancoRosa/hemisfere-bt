@@ -7,18 +7,14 @@ export const parserBin = (hex) => {
     const block = buffer.readInt16LE(4)
     if (sync == '$BIN') {
         if (block == 1) {
-            parseBin1(buffer)
+            return parseBin1(buffer)
         }
         if (block == 3) {
-            console.log("... bin3")
-            parseBin3(buffer)
-
-
+            // console.log("... bin3")
+            return parseBin3(buffer)
         }
-
         else {
             console.log("... unknown stream")
-
         }
 
     } else {
@@ -29,15 +25,17 @@ export const parserBin = (hex) => {
 export const parseBin1 = (buffer) => {
 
     const fields = binMsg.bin1.fields
+    const payload = {}
     Object.keys(fields).forEach(f => {
-        console.log(f, decodeField(buffer, "bin1", f))
+        // console.log(f, decodeField(buffer, "bin1", f))
+        payload[f] = decodeField(buffer, "bin1", f)
     });
-
+    return payload
 };
 
 export const parseBin3 = (buffer) => {
-
     const fields = binMsg.bin3.fields
+    const payload = {}
     Object.keys(fields).forEach(f => {
         if (f == "navMode") {
             console.log(f, navModes[decodeField(buffer, "bin3", f)])
@@ -49,6 +47,7 @@ export const parseBin3 = (buffer) => {
 
     });
 
+    return { ...payload, navMode: navModes[payload.navMode] }
 };
 
 

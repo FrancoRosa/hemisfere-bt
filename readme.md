@@ -29,9 +29,35 @@ The following tables list the commands accepted by the Atlas-band receiver to co
 ### Commands used:
 
 These are the settings done once the communication was stablished
-picocom /dev/rf
+`picocom /dev/rf` or the serial port to connect, then use the folowing commands to set the binary frecuency
 ```
 $JBIN,3,1 #Activates Bin3 at 1Hz
+$JBIN,3,5 #Activates Bin3 at 5Hz
+$JBIN,3,10 #Activates Bin3 at 10Hz
+
+Other commands
+
+$JSHOW
+$JBIN,3,0
+$JBIN,3,1
+$JASC,RTCM3,0
+$JDIFF
+$JDIFF,PORTA
+$JDIFFX,INCLUDE,RTCM3
+
+$JDIFFX,INCLUDE
+$>JDIFFX,INCLUDE,SBAS,ARTK,ATLAS,RTCM2,EDIF,DFX,CMR,RTCM3,ROX,RTCM_23,BEIDOU,ALTPPP,QZSCLAS
+
+$JDIFFX,RTCM3
+$JDIFFX,TYPE
+$JDIFFX,RTCM3
+
+$JRTK,1 
+
+$JSAVE 
+
+$JDIFFX,EXCLUDE,SBAS,ARTK,ATLAS,RTCM2,EDIF,DFX,CMR,ROX,RTCM_23,BEIDOU,ALTPPP,QZSCLAS
+
 ```
 ### Add user to dialout
 ```bash

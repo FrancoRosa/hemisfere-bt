@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serial Data Viewer</title>
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <style>
+        body {
+            background-color: black;
+            color: green;
+            font-family: monospace;
+            margin: 0;
+            padding: 20px;
+        }
+        #data {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hemisphere decoder</h1>
+    <pre id="data"></pre>
+
+    <script>
+        const socket = io('http://localhost:10000'); // Connect to WebSocket server
+
+        const dataDiv = document.getElementById('data');
+
+        socket.on('data', (data) => {
+            const timestamp = new Date().toLocaleString();
+            const message = `[${timestamp}] ${JSON.stringify(data, null,2)}\n`;
+            dataDiv.textContent = message; // Append the data with timestamp
+        });
+    </script>
+</body>
+</html>

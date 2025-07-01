@@ -4,7 +4,7 @@ import { parserBin } from './helper.mjs';
 
 const baudRate = 19200
 const port = new SerialPort({
-    path: '/dev/ttyUSB0',
+    path: '/dev/ttyUSB4',
     baudRate,
 });
 
